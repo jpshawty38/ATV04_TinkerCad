@@ -1,0 +1,26 @@
+const int SENSOR_LDR = A0;         
+const int PINO_RELE = 2;           
+
+int leituraLDR = 0;                
+const int LIMIAR_LUZ = 600;       
+
+void setup() {
+  pinMode(PINO_RELE, OUTPUT);     
+  Serial.begin(9600);             
+}
+
+void loop() {
+  leituraLDR = analogRead(SENSOR_LDR);     
+  Serial.print("Intensidade luminosa: ");
+  Serial.println(leituraLDR);              
+
+  if (leituraLDR < LIMIAR_LUZ) {
+    digitalWrite(PINO_RELE, HIGH);         
+    Serial.println("Luz ativada");
+  } else {
+    digitalWrite(PINO_RELE, LOW);          
+    Serial.println("Luz desativada");
+  }
+
+  delay(1000);   
+}
